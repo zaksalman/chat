@@ -8,6 +8,9 @@ import { FormMessage } from "./FormMessage";
 import { useFormValidate } from "@/hooks/useFormValidate";
 import { TSignUpFormError } from "@/types/form";
 import { SignUpSchema } from "@/schemas/auth";
+import { signUp } from "@/actions/signup";
+import toast from "react-hot-toast";
+import { Submit } from "./Submit";
 
 export function SignUpForm() {
   const [error, action] = useActionState(signUp, undefined);
@@ -21,7 +24,7 @@ export function SignUpForm() {
 
   useEffect(() => {
     if (error?.errorMessage) {
-      renderToStaticMarkup.error(error.errorMessage);
+      toast.error(error.errorMessage);
     }
   }, [error]);
 
